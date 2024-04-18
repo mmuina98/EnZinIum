@@ -1,5 +1,7 @@
 package enzinium;
 
+import java.sql.SQLOutput;
+
 /**
  * Contratos inteligentes con enZinium.
  * 
@@ -180,6 +182,8 @@ public class App {
                                 + ricknillos.balanceOf(morty.getPK())
                                 + " "
                                 + ricknillos.symbol());
+
+        System.out.println("Segunda transaccion");
 
         // verifica que require falla si no hay tokens suficientes en el balance de Rick
         ricknillos.transfer(morty.getPK(), 300d);

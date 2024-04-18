@@ -108,7 +108,7 @@ public class TokenContract {
             this.getBalances().compute(ownerPK, (pk, tokens) -> tokens - units);
             this.getBalances().put(recipient, balanceOf(recipient) + units);
         } catch (Exception e) {
-            // fails silently
+            System.out.println("No se ha podido realizar la transaccion, por no haber unidades suficientes");
         }      
     };
 
@@ -117,14 +117,14 @@ public class TokenContract {
             require(balanceOf(sender) >= units);
             this.getBalances().put(sender, balanceOf(sender) - units);
             this.getBalances().put(recipient, balanceOf(recipient) + units);
-        } catch (Exception e) {
-            // fails silently
-        }   
+        } catch (IllegalArgumentException e) {
+            System.out.println("No se ha podido realizar la transaccion, por no haber unidades suficientes");
+        }
     }
 
-    private void require(Boolean holds) throws Exception {
+    void require(Boolean holds) throws IllegalArgumentException {
         if (! holds) {
-            throw new Exception();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -156,8 +156,8 @@ public class TokenContract {
             Double units = Math.floor(enziniums / tokenPrice);
             transfer(recipient, units);
             this.owner.transferEZI(enziniums);
-        } catch (Exception e) {
-            // fail silently
+        } catch (IllegalArgumentException e) {
+            System.out.println("No se ha podido realizar la transaccion, por no haber dinero suficiente");
         }
     }
 }

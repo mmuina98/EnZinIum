@@ -23,7 +23,7 @@ public class TokenContractTest {
         ricknillos.setTokenPrice(5d);
 
         morty = new Address();
-        morty.generateKeyPair(); 
+        morty.generateKeyPair();
     }
 
     @Test
@@ -55,6 +55,11 @@ public class TokenContractTest {
         // require falla silenciosamente
         ricknillos.transfer(morty.getPK(), 500d);
         assertEquals(2d, ricknillos.balanceOf(morty.getPK()), 0d);   
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void require_test() throws IllegalArgumentException {
+        ricknillos.require(false);
     }
 
     @Test
