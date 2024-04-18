@@ -327,6 +327,8 @@ public class App {
         // verifica que Morty no tiene dinero para comprar una entrada
         morty.send(ricknillos, 3d);
 
+        //System.out.println("Dinero Morty" + morty.getBalance());
+
         System.out.println("Morty no paga suficientes EZI por una entrada" +
                             "\n => sigue teniendo 5 entradas: " 
                                 + ricknillos.balanceOf(morty.getPK())
